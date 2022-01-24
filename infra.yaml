@@ -12,7 +12,6 @@
     tasks:
       - setup:
 
-
   - name: Dependencies
     hosts: all
     become: yes
@@ -20,7 +19,6 @@
       - dependencies
     tags:
       - dependencies
-
 
   - name: Docker
     hosts: all
@@ -30,9 +28,8 @@
     tags:
       - docker
 
-
   - name: Minecraft
-    hosts: all
+    hosts: minecraft_server
     become: yes
     roles:
       - minecraft
@@ -40,7 +37,7 @@
       - minecraft
 
   - name: Ngrok
-    hosts: all
+    hosts: minecraft_server
     become: yes
     roles:
       - ngrok

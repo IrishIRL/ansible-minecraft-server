@@ -5,5 +5,5 @@ IrishIRL-1 ansible_port=22
 ansible_host=192.168.0.48
 ansible_ssh_user=pi
 
-[prometheus]
+[minecraft_server]
 IrishIRL-1
