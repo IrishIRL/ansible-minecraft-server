@@ -27,13 +27,12 @@ Somehow enhance ngrok ??
 
 
 ## Useful information
-Minecraft docker status check: 
+* Ngrok status: https://dashboard.ngrok.com/endpoints/status
+* Minecraft docker status check: 
 ~~~
 docker logs -f minecraft-server
 ~~~
-Ngrok status: https://dashboard.ngrok.com/endpoints/status
-<br /><br />
 
 ## Useful links
-https://www.instructables.com/How-to-Setup-Raspberry-Pi-Without-Monitor-and-Keyb/
-https://littlebigtech.net/posts/raspberry-pi-4-minecraft-server-no-port-forwarding/
+* https://www.instructables.com/How-to-Setup-Raspberry-Pi-Without-Monitor-and-Keyb/
+* https://littlebigtech.net/posts/raspberry-pi-4-minecraft-server-no-port-forwarding/
