@@ -1,2 +1,2 @@
 # ansible-minecraft-server
-Ansible start of minecraft server with ngrok for raspberry pi.
+Ansible minecraft server with ngrok for raspberry pi.
