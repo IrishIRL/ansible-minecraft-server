@@ -7,7 +7,7 @@
   ansible.builtin.unarchive:
     remote_src: yes
     src: /ngrok-stable-linux-arm.tgz
-    dest: /
+    dest: /home/pi/
     mode: a+x
 
 - name: Make ngrok folder
