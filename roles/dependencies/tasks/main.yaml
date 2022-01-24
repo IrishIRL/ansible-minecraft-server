@@ -1,0 +1,19 @@
+- name: Install Default-JDK package
+  ansible.builtin.apt:
+    name: default-jdk
+
+- name: Install libseccomp2
+  ansible.builtin.apt:
+    name: libseccomp2
+
+- name: Install python dependencies
+  ansible.builtin.apt:
+    name:
+      - libffi-dev
+      - libssl-dev
+      - python3
+      - python3-pip
+
+- name: Install unzip
+  ansible.builtin.apt:
+    name: unzip

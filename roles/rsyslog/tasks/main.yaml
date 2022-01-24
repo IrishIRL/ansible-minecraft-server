@@ -1,0 +1,11 @@
+- name: Copy Rsyslog Telegraf config file
+  ansible.builtin.template:
+    src: 10-telegraf.conf
+    dest: /etc/rsyslog.d/10-telegraf.conf
+  notify: restart rsyslog
+
+- name: Make sure rsyslog.service
+  ansible.builtin.systemd:
+    name: rsyslog.service
+    state: started
+    enabled: yes

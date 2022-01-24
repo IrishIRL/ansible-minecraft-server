@@ -1,0 +1,2 @@
+- name: daemon reload
+  ansible.builtin.shell: systemctl daemon-reload

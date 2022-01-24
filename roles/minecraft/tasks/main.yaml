@@ -1,0 +1,43 @@
+# Create directory minecraft-server
+- name: Make folder minecraft-server
+  ansible.builtin.file:
+    path: /minecraft-server
+    state: directory
+
+# Upload minecraft uncomposed file
+#- name: Copy Docker-Compose Minecraft Server
+#  ansible.builtin.template:
+#    src: docker-compose.yaml.j2
+#    dest: /docker-compose.yaml
+
+#- name: Run Docker-Compose Minecraft Server
+#  community.docker.docker_compose:
+#    project_name: minecraft-server-compose
+#    definition:
+#      minecraft-server:
+#      image: itzg/minecraft-server
+#      container_name: minecraft-server
+#      ports:
+#          - "25565:25565"
+#      environment:
+#          MEMORY: "{{ memory_capacity }}"
+#          EULA: "TRUE"
+#      tty: true
+#      stdin_open: true
+#      restart: always
+#      volumes: 
+#        minecraft-data: data
+
+- name: Run Docker-Compose Minecraft Server
+  community.docker.docker_container:
+    container_default_behavior: no_defaults
+    name: minecraft-server
+    image: itzg/minecraft-server
+    published_ports: "{{ minecraft_port }}:25565"
+    volumes: /minecraft-data:/data
+    restart_policy: always
+    env:
+      MEMORY: "{{ memory_capacity }}"
+      EULA: "TRUE"
+    tty: true
+#    stdin_open: true
