@@ -2,3 +2,10 @@
   ansible.builtin.apt:
     cache_valid_time: 86400
 
+- name: Update and upgrade apt packages
+  become: true
+  ansible.builtin.apt:
+    upgrade: yes
+    update_cache: yes
+    # One day
+    cache_valid_time: 86400 

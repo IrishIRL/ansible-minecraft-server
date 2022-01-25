@@ -1,0 +1,21 @@
+---
+- name: Install Iptables-persistent
+  ansible.builtin.apt:
+    name: iptables-persistent
+    state: latest
+
+- name: Upload rule
+  ansible.builtin.template:
+    src: mangle
+    dest: /etc/iptables/rules.v4
+
+- name: Upload mangle
+  ansible.builtin.template:
+    src: mangle
+    dest: /var/local/iptables.mangle
+
+- name: Iptables restore
+  community.general.iptables_state:
+    path: /var/local/iptables.mangle
+    state: restored
+    table: mangle

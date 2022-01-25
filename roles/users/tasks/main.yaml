@@ -1,5 +1,0 @@
-- name: Add this machine to the known_hosts
-  ansible.builtin.template:
-    src: authorized_keys.j2
-    dest: /home/pi/.ssh/authorized_keys
-    owner: pi
