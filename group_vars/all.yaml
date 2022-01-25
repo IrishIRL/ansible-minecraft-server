@@ -1,8 +1,68 @@
-# Minecraft preparation
-memory_capacity: 6G
+# Minecraft server composing (server options)
+## Minecraft_port is used inside a docker.
+## Most probably should be used default, but maybe there is a usecase. 
 minecraft_port: 25565
 
-# Ngrok
+## minecraft_version of minecraft, you can choose from: LATEST (the default), SNAPSHOT or a specific version, such as "1.7.9"
+## Examles: version: 1.7.9, version: SNAPSHOT, version: LATEST
+minecraft_version: LATEST
+
+## memory_capacity is used to allocate how much RAM should be used.
+## Do not use more than you have on your raspberri pi :D
+memory_capacity: 6G
+
+## Message of the Day
+motd_message: Welcome to §l§cMy Minecraft§r §nserver!
+
+## Game Difficulty
+## Default: EASY
+game_difficulty: HARD
+
+## Op/Administrator Players
+## Could be used as a link to json file, but I will just write usernames.
+## Example: user1,uuid2 
+op_user_list: irland94
+
+## max_players - set up how many people could connect to the server at once.
+## Default: 20
+max_players: "10"
+
+## allow_nether - allow to go to the netherworld.
+allow_nether: "TRUE"
+
+## max_world_size - this sets the maximum possible size in blocks, expressed as a radius, that the world border can obtain.
+max_world_size: "10000"
+
+# announce_player_achievements - allows server to announce when a player gets an achievement.
+announce_player_achievements: "TRUE"
+
+# enable_command_block - enables command blocks.
+enable_command_block: "TRUE"
+
+## server_type is used to setup a custom server.
+## Server types available: 
+## VANILLA (default), FORGE, FABRIC, BUKKIT, SPIGOT, PAPER, AIRPLANE, PUFFERFISH,  
+## PURPUR, MAGMA, MOHIST, CATSERVER, CANYON, SPONGEVANILLA, LIMBO, CRUCIBLE
+## More info: https://github.com/itzg/docker-minecraft-server#running-a-paper-server
+server_type: PAPER
+
+# Minecraft server composing (overwrite options)
+## force_world_copy is used to overwrite world on start.
+## TRUE - to overwrite, FALSE - to leave intact. 
+## Default: FALSE
+force_world_copy: "FALSE"
+
+## override_server_properties is used to override the server configuration each time the container starts up.
+## TRUE - to overwrite, FALSE - to leave intact.
+## Default: FALSE
+override_server_properties: "TRUE"
+
+## skip_server_properties is used to leave server.properties file intact
+## PS. Currently not in use.
+## skip_server_properties: "FALSE"
+
+
+# Ngrok options
 ngrok_auth_token: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           31613566363665376165396163323733356465323363633233623735353734666135663733363839
