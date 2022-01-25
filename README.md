@@ -33,6 +33,7 @@ Somehow enhance ngrok ??
 docker logs -f minecraft-server
 ~~~
 
-## Useful links
+## Used for this project
+* https://github.com/itzg/docker-minecraft-server
 * https://www.instructables.com/How-to-Setup-Raspberry-Pi-Without-Monitor-and-Keyb/
 * https://littlebigtech.net/posts/raspberry-pi-4-minecraft-server-no-port-forwarding/
