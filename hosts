@@ -1,9 +1,9 @@
 # internal services machine
-IrishIRL-1 ansible_port=22
+server-1 ansible_port=22
 
 [all:vars]
 ansible_host=192.168.0.48
 ansible_ssh_user=pi
 
-[minecraft_server]
-IrishIRL-1
+[minecraft_servers]
+server-1

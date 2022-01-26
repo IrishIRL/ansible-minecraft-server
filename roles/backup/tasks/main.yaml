@@ -1,0 +1,15 @@
+- name: Make user backup
+  ansible.builtin.user:
+    name: backup
+    createhome: yes
+    home: /home/backup
+    shell: /bin/bash
+    generate_ssh_key: yes
+
+# Not used in the current setup, but maybe it will be used in the future?
+#- name: Install Duplicity
+#  ansible.builtin.apt:
+#    name: duplicity
+#    update_cache: yes
+#    state: present
+

@@ -1,0 +1,22 @@
+# Create backup directory for minecraft-data
+- name: Make folder minecraft-data-backup
+  ansible.builtin.file:
+    path: /home/backup/minecraft-worlds
+    state: directory
+    recurse: yes
+    owner: backup
+    mode: '0700'
+
+# Upload backup script
+- name: Upload backup script
+  ansible.builtin.copy:
+    src: world-backup-script.sh
+    dest: /home/backup/world-backup-script.sh
+    owner: backup
+    mode: '0700'
+
+# Make cron file for world backup
+- name: Create cron file minecaft-world-backup
+  ansible.builtin.template:
+    src: minecaft-world-backup.j2
+    dest: /etc/cron.d/minecaft-world-backup

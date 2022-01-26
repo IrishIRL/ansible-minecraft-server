@@ -12,13 +12,14 @@
     tasks:
       - setup:
 
-  - name: Dependencies
+  - name: Preparation work
     hosts: all
     become: yes
     roles:
       - dependencies
+      - backup
     tags:
-      - dependencies
+      - prep
 
   - name: Docker
     hosts: all
@@ -30,7 +31,7 @@
       - docker
 
   - name: Minecraft
-    hosts: minecraft_server
+    hosts: minecraft_servers
     become: yes
     roles:
       - minecraft
@@ -38,12 +39,20 @@
       - minecraft
 
   - name: Ngrok
-    hosts: minecraft_server
+    hosts: minecraft_servers
     become: yes
     roles:
       - ngrok
     tags:
       - ngrok
+
+  - name: Minecraft World Backup
+    hosts: minecraft_servers
+    become: yes
+    roles:
+      - minecraft-world-backup
+    tags:
+      - minecraft-backup
 
 #  - name: Rsyslog influx logging
 #    hosts: all

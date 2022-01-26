@@ -9,6 +9,7 @@ Server used for the project is hosted on Raspberry Pi with Raspberry Pi OS.
 ~~~
 1. Minecraft server build with docker
 2. Ngrok client
+3. Minecraft World backup (every two hours)
 ~~~
 
 ### Planning to add:
@@ -18,9 +19,7 @@ Logging:
 2. CPU temprature
 3. Fan speed
 
-Minecraft initial setup (Currently you can only choose RAM amount)
-
-World backup ?
+Minecraft initial setup (most of settings are ready, some left)
 
 Somehow enhance ngrok ??
 ~~~

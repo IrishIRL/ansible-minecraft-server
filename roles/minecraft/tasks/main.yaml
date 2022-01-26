@@ -1,8 +1,12 @@
-# Create directory minecraft-server
-- name: Make folder minecraft-server
+- name: Erase current worlds if delete_world == true
   ansible.builtin.file:
-    path: /minecraft-server
-    state: directory
+    state: absent
+    path: /minecraft-data/{{ item }}
+  loop: 
+    - world
+    - world_nether
+    - world_the_end
+  when: delete_world == true
 
 - name: Run Docker-Compose Minecraft Server
   community.docker.docker_container:
@@ -13,6 +17,7 @@
     volumes: /minecraft-data:/data
     restart_policy: always
     env:
+#      FORCE_WORLD_COPY: "{{ force_world_copy }}"
       VERSION: "{{ minecraft_version }}"
       TYPE: "{{ server_type }}"
       MEMORY: "{{ memory_capacity }}"
@@ -24,8 +29,9 @@
       MAX_WORLD_SIZE: "{{ max_world_size }}"
       ANNOUNCE_PLAYER_ACHIEVEMENTS: "{{ announce_player_achievements }}"
       ENABLE_COMMAND_BLOCK: "{{ enable_command_block }}"
+      VIEW_DISTANCE: "{{ view_distance }}"
+      SEED: "{{ world_seed }}"
       EULA: "TRUE"
-      FORCE_WORLD_COPY: "{{ force_world_copy }}"
       OVERRIDE_SERVER_PROPERTIES: "{{ override_server_properties }}"
 #      SKIP_SERVER_PROPERTIES: "{{ skip_server_properties }}"
     tty: true

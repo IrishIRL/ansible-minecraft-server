@@ -1,3 +1,9 @@
+# Minecraft options
+## Delete the world before we start the game
+delete_world: false
+
+## 
+
 # Minecraft server composing (server options)
 ## Minecraft_port is used inside a docker.
 ## Most probably should be used default, but maybe there is a usecase. 
@@ -12,7 +18,7 @@ minecraft_version: LATEST
 memory_capacity: 6G
 
 ## Message of the Day
-motd_message: Welcome to §l§cMy Minecraft§r §nserver!
+motd_message: Ilja §l§cloh!
 
 ## Game Difficulty
 ## Default: EASY
@@ -33,11 +39,17 @@ allow_nether: "TRUE"
 ## max_world_size - this sets the maximum possible size in blocks, expressed as a radius, that the world border can obtain.
 max_world_size: "10000"
 
-# announce_player_achievements - allows server to announce when a player gets an achievement.
+## announce_player_achievements - allows server to announce when a player gets an achievement.
 announce_player_achievements: "TRUE"
 
-# enable_command_block - enables command blocks.
+## enable_command_block - enables command blocks.
 enable_command_block: "TRUE"
+
+## view_distance - the amount of world data the server sends the client
+view_distance: "8"
+
+## world_seed is used to set up a custom seed for the map
+world_seed: "-6627837072499748301"
 
 ## server_type is used to setup a custom server.
 ## Server types available: 
@@ -50,7 +62,8 @@ server_type: PAPER
 ## force_world_copy is used to overwrite world on start.
 ## TRUE - to overwrite, FALSE - to leave intact. 
 ## Default: FALSE
-force_world_copy: "FALSE"
+## PS. Does not seem to work. Will look at that later. Check delete_world for now.
+## force_world_copy: "FALSE"
 
 ## override_server_properties is used to override the server configuration each time the container starts up.
 ## TRUE - to overwrite, FALSE - to leave intact.
