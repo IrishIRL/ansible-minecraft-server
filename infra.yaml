@@ -54,6 +54,15 @@
     tags:
       - minecraft-backup
 
+  - name: Minecraft Temprature Logger
+    hosts: minecraft_servers
+    become: yes
+    roles:
+      - logger
+    tags:
+      - logger
+
+
 #  - name: Rsyslog influx logging
 #    hosts: all
 #    become: yes

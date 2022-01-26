@@ -1,0 +1,34 @@
+# There will be a special user for logging services.
+# Creating such user
+- name: Make user logger
+  ansible.builtin.user:
+    name: logger
+    groups: docker, video
+
+- name: Copy temp-logger.sh script to the server
+  ansible.builtin.copy:
+    src: temp-logger.sh
+    dest: /home/logger/temp-logger.sh
+    owner: logger
+    mode: '0700'
+
+# Make cron file for world backup
+- name: Create cron file temp-logger
+  ansible.builtin.copy:
+    src: temp-logger.cron
+    dest: /etc/cron.d/temp-logger
+
+# Do I even need a service ?
+#- name: Copy temp-logger.service to the server
+#  ansible.builtin.copy:
+#    src: temp-logger.service
+#    dest: /etc/systemd/system/temp-logger.service
+#    #mode: u+x
+#    owner: logger
+
+#- name: Make sure temp-logger.service is running
+#  ansible.builtin.systemd:
+#    daemon_reload: yes
+#    name: temp-logger.service
+#    state: started
+#    enabled: yes

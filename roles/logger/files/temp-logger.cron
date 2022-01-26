@@ -1,0 +1,1 @@
+*/3 * * * *  logger  /home/logger/temp-logger.sh
