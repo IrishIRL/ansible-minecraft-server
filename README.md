@@ -16,10 +16,10 @@ Server used for the project is hosted on Raspberry Pi with Raspberry Pi OS.
 ~~~
 Logging:
 1. Minecraft server load
-2. CPU temprature
+2. CPU temprature +
 3. Fan speed
 
-Minecraft initial setup (most of settings are ready, some left)
+Minecraft initial setup (most of settings are ready, some left) +-
 
 Somehow enhance ngrok ??
 ~~~
