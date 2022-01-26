@@ -16,23 +16,43 @@ minecraft_version: LATEST
 memory_capacity: 6G
 
 ## Message of the Day
-motd_message: Ilja §l§cloh!
+motd_message: Hello to the server by §cIrishIrl!
 
 ## Game Difficulty
 ## Default: EASY
 game_difficulty: HARD
+
+## Gamemode - By default, Minecraft servers are configured to run in Survival mode. 
+## You can change the mode using MODE where you can either provide the standard numerical values or the shortcut values:
+##  CREATIVE, SURVIVAL, ADVENTURE, SPECTATOR (only for Minecraft 1.8 or later)
+gamemode: SURVIVAL
+
+## PVP Mode
+## By default, servers are created with player-vs-player (PVP) mode enabled. 
+## You can disable this with the PVP environment variable set to FALSE, otherwise set to TRUE
+pvp_enabled: "TRUE"
+
+## Level Type and Generator Settings
+## By default, a standard world is generated with hills, valleys, water, etc. 
+## A different level type can be configured by setting LEVEL_TYPE to an expected type, for example
+## DEFAULT, FLAT, LARGEBIOMES, AMPLIFIED, CUSTOMIZED, BUFFET, 
+## BIOMESOP (Biomes O' Plenty for 1.12 and older), BIOMESOPLENTY (Biomes O' Plenty for 1.15 and above)
+level_type: "DEFAULT"
 
 ## Op/Administrator Players
 ## Could be used as a link to json file, but I will just write usernames.
 ## Example: user1,uuid2 
 op_user_list: irland94
 
+## allow_nether - allow to go to the netherworld.
+allow_nether: "TRUE"
+
 ## max_players - set up how many people could connect to the server at once.
 ## Default: 20
 max_players: "10"
 
-## allow_nether - allow to go to the netherworld.
-allow_nether: "TRUE"
+# max_build_height
+max_build_height: "256"
 
 ## max_world_size - this sets the maximum possible size in blocks, expressed as a radius, that the world border can obtain.
 max_world_size: "10000"
@@ -48,6 +68,28 @@ view_distance: "8"
 
 ## world_seed is used to set up a custom seed for the map
 world_seed: "-6627837072499748301"
+
+## force_gamemode is used to force players to join in the default game mode.
+## false - Players will join in the gamemode they left in. (Default)
+## true - Players will always join in the default gamemode.
+force_gamemode: "FALSE"
+
+## generate_structures is used to define whether structures (such as villages) will be generated.
+## false - Structures will not be generated in new chunks.
+## true - Structures will be generated in new chunks. (Default)
+generate_structures: "TRUE"
+
+## Spawn Animals - Determines if animals will be able to spawn.
+spawn_animals: "TRUE"
+
+## Spawn Monsters - Determines if monsters will be spawned.
+spawn_monsters: "TRUE"
+
+## Spawn NPCs - Determines if villagers will be spawned.
+spawn_npcs: "TRUE"
+
+## Set spawn protection - Sets the area that non-ops can not edit (0 to disable)
+spawn_protection: "0"
 
 ## server_type is used to setup a custom server.
 ## Server types available: 
