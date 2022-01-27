@@ -27,6 +27,10 @@ Somehow enhance ngrok ??
 
 ## Useful information
 * Ngrok status: https://dashboard.ngrok.com/endpoints/status
+* Ngrok status via console:
+~~~
+curl --silent --show-error http://127.0.0.1:4040/api/tunnels | jq '.tunnels[].public_url'
+~~~
 * Minecraft docker status check: 
 ~~~
 docker logs -f minecraft-server
