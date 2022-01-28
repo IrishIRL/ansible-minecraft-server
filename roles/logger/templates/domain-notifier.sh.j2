@@ -1,0 +1,32 @@
+## Token of Telegram bot
+TOKEN="{{ telegram_bot_token }}"
+
+## Chat where to post the message
+CHAT="{{ telegram_chat_id }}"
+
+## We need a file that has the current server address to check if it is still the same.
+FILE=/home/logger/current_server_address.txt
+
+## Check that the FILE exists
+if [ ! -e "$FILE" ] ; then
+    ## If it does not exist, then create the file
+    touch "$FILE"
+fi
+
+if [ ! -w "$FILE" ] ; then
+    ## Check that the file is writable, if not, then returns 1
+#    echo cannot write to $FILE
+    exit 1
+fi
+
+## DOMAIN_NAME gets a json formatted information about the tunnel, cuts it to give only the proper server address.
+## Example: 0.tcp.ngrok.io:123456
+DOMAIN_NAME=$(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | jq '.tunnels[].public_url' | sed 's/.*\///' | sed 's/.$//')
+DOMAIN_TO_CHECK=$(cat $FILE)
+
+if [ "$DOMAIN_NAME" != "$DOMAIN_TO_CHECK" ]; then
+   ## Write the new server address to the file
+   echo "$DOMAIN_NAME" > $FILE
+   ## Sends the message to the $CHAT with the bot$TOKEN regarding new $DOMAIN_NAME
+   curl "https://api.telegram.org/bot$TOKEN/sendMessage?chat_id=$CHAT&text=New World Domain Name: $DOMAIN_NAME"
+fi

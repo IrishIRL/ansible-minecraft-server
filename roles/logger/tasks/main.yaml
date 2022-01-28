@@ -1,34 +1,45 @@
 # There will be a special user for logging services.
-# Creating such user
+## Creating such user
 - name: Make user logger
   ansible.builtin.user:
     name: logger
     groups: docker, video
 
+# CPU Temprature Logging
+## Copy teamprature logger script
 - name: Copy temp-logger.sh script to the server
-  ansible.builtin.copy:
-    src: temp-logger.sh
+  ansible.builtin.template:
+    src: temp-logger.sh.j2
     dest: /home/logger/temp-logger.sh
     owner: logger
     mode: '0700'
+  no_log: true
 
-# Make cron file for world backup
-- name: Create cron file temp-logger
+## Make cron file that will call temprature logger every 3 minutes
+- name: Create cron file temp-logger script
   ansible.builtin.copy:
     src: temp-logger.cron
     dest: /etc/cron.d/temp-logger
 
-# Do I even need a service ?
-#- name: Copy temp-logger.service to the server
-#  ansible.builtin.copy:
-#    src: temp-logger.service
-#    dest: /etc/systemd/system/temp-logger.service
-#    #mode: u+x
-#    owner: logger
+# Server Name Logging
+## Since I am using a free Ngrok API, the server name is always a random and sometime it changes
+## For that reason I am going to log the current name and in case it changed, the Telegram bot will send a message to my group.
+## First we need to install jq, to work with received json data from localhost:4040 (ngrok status page).
+- name: Install jq package
+  ansible.builtin.apt:
+    name: jq
 
-#- name: Make sure temp-logger.service is running
-#  ansible.builtin.systemd:
-#    daemon_reload: yes
-#    name: temp-logger.service
-#    state: started
-#    enabled: yes
+## Copy domain notifier script
+- name: Copy domain-notifier.sh script to the server
+  ansible.builtin.template:
+    src: domain-notifier.sh.j2
+    dest: /home/logger/domain-notifier.sh
+    owner: logger
+    mode: '0700'
+  no_log: true
+
+## Make cron file that will call domain notifier every 5 minutes
+- name: Create cron file domain-notifier script
+  ansible.builtin.copy:
+    src: domain-notifier.cron
+    dest: /etc/cron.d/domain-notifier

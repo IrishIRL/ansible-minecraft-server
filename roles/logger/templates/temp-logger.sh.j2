@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# DECLARATIONS START #
+
+  ## Temprature options
+  TEMPRATURE=$(vcgencmd measure_temp | cut -c 6-9)
+  TEMPRATURE_CONVERTED=${TEMPRATURE%.*}
+  DATE=$(date +%Y-%m-%d-%H:%M:%S)
+
+  ## Telegram Bot options
+  ### Token of Telegram bot
+  TOKEN="{{ telegram_bot_token }}"
+
+  ### Chat where to post the message
+  CHAT="{{ telegram_chat_id }}"
+
+# DECLARATIONS END #
+
+  ## Write down the date and temprature to the log
+  echo "$DATE | $TEMPRATURE" >> raspberry_temp.txt
+
+  ## Check temprature
+  ## If temprature is over 65'C, then it sends a warning message both to telegram and minecraft server
+  if [ $TEMPRATURE_CONVERTED -gt 65 ]
+  then
+      docker exec minecraft-server mc-send-to-console say "§4[WARNING] §fCurrent CPU temprature: §4$TEMPRATURE"
+      curl "https://api.telegram.org/bot$TOKEN/sendMessage?chat_id=$CHAT&text=\[WARNING\] CPU Temprature: $TEMPRATURE"
+  ## Otherwise it sends information only to minecraft server
+  elif [ $TEMPRATURE_CONVERTED -gt 40 ]
+  then
+      docker exec minecraft-server mc-send-to-console say "§6[INFO] §fCurrent temprature: §6$TEMPRATURE"
+  else
+      docker exec minecraft-server mc-send-to-console say "Current temprature: §2$TEMPRATURE"
+  fi

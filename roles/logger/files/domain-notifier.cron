@@ -1,0 +1,1 @@
+*/5 * * * *  logger  /home/logger/domain-notifier.sh
