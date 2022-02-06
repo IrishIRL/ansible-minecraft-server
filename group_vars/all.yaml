@@ -1,3 +1,15 @@
+# First thing first
+enable_rcon: "TRUE"
+rcon_port: "25575"
+rcon_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          65336432306265396664316233346162326637326664306434326361313135316532653231343535
+          3430333832343130366135616364653563333765336666370a356562396336623161373434633739
+          32646564356264373835353334356535303065373935646461613939393761303334323836636630
+          3266333039666534370a616264366630333431373561356432323537363933303235323665626663
+          3463
+
+
 # Minecraft options
 ## Delete the world before we start the game
 delete_world: false 
@@ -15,8 +27,13 @@ minecraft_version: LATEST
 ## Do not use more than you have on your raspberri pi :D
 memory_capacity: 6G
 
+## Logo of the Server
+## Use override_icon=true to make it work
+server_icon: https://linkto.image/image.png
+override_icon: "TRUE"
+
 ## Message of the Day
-motd_message: Hello to the server by §cIrishIrl!
+motd_message: Welcome to §cthe server!
 
 ## Game Difficulty
 ## Default: EASY

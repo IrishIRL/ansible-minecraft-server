@@ -8,4 +8,4 @@ tar -zcvpf $BACKUP_DIR/world_nether-$DATE.tar.gz /minecraft-data/world_nether
 tar -zcvpf $BACKUP_DIR/world_the_end-$DATE.tar.gz /minecraft-data/world_the_end
 
 # Delete files older than 10 days #
-find $BACKUP_DIR/* -mtime +10 -exec rm {} \;
+find $BACKUP_DIR/* -mtime +3 -exec rm {} \;

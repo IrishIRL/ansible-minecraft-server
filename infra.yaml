@@ -46,6 +46,13 @@
     tags:
       - ngrok
 
+  - name: Minecraft additional configuration
+    hosts: minecraft_servers
+    become: yes
+    roles:
+      - minecraft-configuration
+    tags:
+      - config
   - name: Minecraft World Backup
     hosts: minecraft_servers
     become: yes
@@ -61,7 +68,6 @@
       - logger
     tags:
       - logger
-
 
 #  - name: Rsyslog influx logging
 #    hosts: all

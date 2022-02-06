@@ -1,0 +1,7 @@
+## Download image from the web location
+- name: Download logo image
+  ansible.builtin.get_url:
+    url: "{{ server_icon }}"
+    dest: /minecraft-data/server-icon.png
+    force: yes
+  when: override_icon == TRUE
