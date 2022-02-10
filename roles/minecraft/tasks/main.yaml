@@ -1,16 +1,3 @@
-- name: Erase current worlds if delete_world == true
-  ansible.builtin.file:
-    state: absent
-    path: /minecraft-data/{{ item }}
-  loop: 
-    - world
-    - world_nether
-    - world_the_end
-  when: delete_world == true
-
-## PS. ICON can be setup directly from here, but I get problem with dimensions,
-## So decided to make a custom function which does the same thing.
-## Maybe will fix check it up later.
 - name: Run Docker-Compose Minecraft Server
   community.docker.docker_container:
     container_default_behavior: no_defaults
@@ -24,8 +11,6 @@
       MEMORY: "{{ memory_capacity }}"
       VERSION: "{{ minecraft_version }}"
       TYPE: "{{ server_type }}"
-#      ICON: "{{ server_icon }}"
-#      OVERRIDE_ICON: "{{ override_icon }}"
       MOTD: "{{ motd_message }}"
       ENABLE_RCON: "{{ enable_rcon }}"
       RCON_PORT: "{{ rcon_port }}"
@@ -50,6 +35,5 @@
       OVERRIDE_SERVER_PROPERTIES: "{{ override_server_properties }}"
       FORCE_GAMEMODE: "{{ force_gamemode }}"
       GENERATE_STRUCTURES: "{{ generate_structures }}"
-#      FORCE_WORLD_COPY: "{{ force_world_copy }}"
-#      SKIP_SERVER_PROPERTIES: "{{ skip_server_properties }}"
     tty: true
+  no_log: true

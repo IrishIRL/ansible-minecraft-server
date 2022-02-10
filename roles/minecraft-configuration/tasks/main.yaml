@@ -1,3 +1,15 @@
+## Erase current worlds (both world, world_nether and world_the_end)
+## You can erase only one of the worlds by commenting other loops
+- name: Erase current worlds if delete_world == true
+  ansible.builtin.file:
+    state: absent
+    path: /minecraft-data/{{ item }}
+  loop:
+    - world
+    - world_nether
+    - world_the_end
+  when: delete_world == true
+
 ## Download image from the web location
 - name: Download logo image
   ansible.builtin.get_url:
@@ -5,3 +17,11 @@
     dest: /minecraft-data/server-icon.png
     force: yes
   when: override_icon == true
+
+## Download datapacks from the web location
+- name: Download datapacks
+  ansible.builtin.get_url:
+    url: "{{ item.value }}"
+    dest: /minecraft-data/world/datapacks/{{ item.key }}.zip
+  loop: "{{ datapack_items | dict2items }}"
+  when: install_datapacks == true

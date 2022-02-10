@@ -10,6 +10,21 @@ rcon_password: !vault |
           3463
 
 
+# Minecraft Custom Configs
+## Logo of the Server
+## Please use 64x64 icon for the server, it will most probably not work with other sizes.
+## Set override_icon to true, to change the png
+server_icon: https://link.to/logo.png
+override_icon: false
+
+## Install custom Datapacks
+## Use key for the zip file saved to the folder (do not need .zip at the end)
+## Use value for the link where to download zip from
+datapack_items:
+  datapack_1: https://link.to/datapack.zip
+install_datapacks: false
+
+
 # Minecraft options
 ## Delete the world before we start the game
 delete_world: false 
@@ -26,12 +41,6 @@ minecraft_version: LATEST
 ## memory_capacity is used to allocate how much RAM should be used.
 ## Do not use more than you have on your raspberri pi :D
 memory_capacity: 6G
-
-## Logo of the Server
-## Please use 64x64 icon for the server, it will most probably not work with other sizes.
-## Set override_icon to true, to change the png
-server_icon: www.link.com/some.png
-override_icon: false
 
 ## Message of the Day
 motd_message: Welcome to §cthe server!
