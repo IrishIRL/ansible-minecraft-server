@@ -1,6 +1,6 @@
 ## Erase current worlds (both world, world_nether and world_the_end)
 ## You can erase only one of the worlds by commenting other loops
-- name: Erase current worlds if delete_world == true
+- name: Erase current worlds if delete_worlds == true
   ansible.builtin.file:
     state: absent
     path: /minecraft-data/{{ item }}
@@ -8,7 +8,7 @@
     - world
     - world_nether
     - world_the_end
-  when: delete_world == true
+  when: delete_worlds == true
 
 ## Download image from the web location
 - name: Download logo image
