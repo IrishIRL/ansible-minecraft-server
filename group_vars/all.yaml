@@ -28,9 +28,10 @@ minecraft_version: LATEST
 memory_capacity: 6G
 
 ## Logo of the Server
-## Use override_icon=true to make it work
-server_icon: https://linkto.image/image.png
-override_icon: "TRUE"
+## Please use 64x64 icon for the server, it will most probably not work with other sizes.
+## Set override_icon to true, to change the png
+server_icon: www.link.com/some.png
+override_icon: false
 
 ## Message of the Day
 motd_message: Welcome to §cthe server!

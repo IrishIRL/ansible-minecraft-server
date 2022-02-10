@@ -53,6 +53,7 @@
       - minecraft-configuration
     tags:
       - config
+
   - name: Minecraft World Backup
     hosts: minecraft_servers
     become: yes
