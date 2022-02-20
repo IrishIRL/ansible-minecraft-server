@@ -1,14 +1,7 @@
 # First thing first
 enable_rcon: "TRUE"
 rcon_port: "25575"
-rcon_password: !vault |
-          $ANSIBLE_VAULT;1.1;AES256
-          65336432306265396664316233346162326637326664306434326361313135316532653231343535
-          3430333832343130366135616364653563333765336666370a356562396336623161373434633739
-          32646564356264373835353334356535303065373935646461613939393761303334323836636630
-          3266333039666534370a616264366630333431373561356432323537363933303235323665626663
-          3463
-
+rcon_password: input_rcon_pass_here
 
 # Minecraft Custom Configurations
 ## Delete all three worlds before we start the game (normal world, nether, the end)
@@ -29,6 +22,36 @@ datapack_items:
 install_datapacks: false
 
 
+# Whitelist options
+
+## You can provide both WHITELIST_FILE and WHITELIST, which are processed in that order.
+## UUIDs passed via WHITELIST need to be the dashed variant, otherwise it not be recognised and instead added as a username.
+## If running Minecraft 1.7.5 or earlier, these variables will apply to white-list.txt, with 1.7.6 implementing support for whitelist.json. Make sure your WHITELIST_FILE is in the appropriate format.
+## If either WHITELIST_FILE or WHITELIST is provided, the server property white-list is automatically set to true, enabling whitelist functionality. 
+## Alternatively you can set ENABLE_WHITELIST=TRUE to only set the server property white-list without modifying the whitelist file. 
+## In this case the whitelist can be managed using the whitelist add and whitelist remove commands.
+## Remember you can set enforcement via the ENFORCE_WHITELIST variable.
+## NB! Most of the commands are commented out and you should manually add them to the roles/minectaft/tasks/main.yaml file. (Otherwise white-list will be automatically set to true)
+
+## Whitelist from file (Use WHITELIST_FILE: "{{ whitelist_file }}")
+## whitelist_file: "" (uncomment this to start it working)
+
+## Whitelist users (Example: user1, uuid2). (Use WHITELIST: "{{ whitelist }}")
+## whitelist: irland94
+
+## Override whitelist (Use OVERRIDE_WHITELIST: "{{ override_whitelist }}")
+## override_whitelist: "TRUE"
+
+# Enable whitelist
+enable_whitelist: "FALSE"
+
+## Enforce whitelist on the server
+## To enforce the whitelist and auto-kick players not included in whitelist configuration, set ENFORCE_WHITELIST=TRUE. 
+## By default any user can join your Minecraft server if it's publicly accessible, regardless of your whitelist configuration.
+## (Use ENFORCE_WHITELIST: "{{ enforce_whitelist }}")
+## enforce_whitelist: "TRUE"
+
+
 # Minecraft options
 
 # Minecraft server composing (server options)
@@ -45,7 +68,7 @@ minecraft_version: LATEST
 memory_capacity: 6G
 
 ## Message of the Day
-motd_message: Welcome to §cthe server!
+motd_message: Welcome to §cthe Server!
 
 ## Game Difficulty
 ## Default: EASY
@@ -54,7 +77,7 @@ game_difficulty: HARD
 ## Gamemode - By default, Minecraft servers are configured to run in Survival mode. 
 ## You can change the mode using MODE where you can either provide the standard numerical values or the shortcut values:
 ##  CREATIVE, SURVIVAL, ADVENTURE, SPECTATOR (only for Minecraft 1.8 or later)
-gamemode: SURVIVAL
+gamemode: SPECTATOR
 
 ## PVP Mode
 ## By default, servers are created with player-vs-player (PVP) mode enabled. 
@@ -71,7 +94,7 @@ level_type: "DEFAULT"
 ## Op/Administrator Players
 ## Could be used as a link to json file, but I will just write usernames.
 ## Example: user1,uuid2 
-op_user_list: irland94
+op_user_list: user1
 
 ## allow_nether - allow to go to the netherworld.
 allow_nether: "TRUE"
@@ -147,35 +170,13 @@ override_server_properties: "TRUE"
 # Ngrok options
 ## Ngrok uses authentication token to create the tunnel,
 ## So please input a correct ngrok auth token here
-ngrok_auth_token: !vault |
-          $ANSIBLE_VAULT;1.1;AES256
-          31613566363665376165396163323733356465323363633233623735353734666135663733363839
-          3631633535373964376337353137636231353834623865630a636238646439353636306435313565
-          64616465656464306637643430326435643939613034383762626333396134653838663064366130
-          3962303538653737610a643162613439623330613965383863353265323463313262616332346663
-          63363838333334326132313231333265353965656635343434646162326239613261313138343966
-          63393030653963653737666236616161303938363766323162336535643537376332623238373737
-          303862393536386535336466353439366265
-
+ngrok_auth_token: input_token_here
 
 # Logger options
 ## I am using telegram bot to send different type of log messages,
 ## So please input a correct token here
-telegram_bot_token: !vault |
-          $ANSIBLE_VAULT;1.1;AES256
-          61623635633337303835663838653065626666326136333861336461353465376532316530333432
-          3331646638336464356131343538656562646538353964320a623535393166353766613038326334
-          33633161343538656633623730376530303666343838356334343135633635323366356166646333
-          3864386630666363390a646130363636626434343965623631373965633061343866396466633663
-          65653337333932333162346235303461373563346630316635346462356535663161383432373730
-          6136646437666336393931303538653136626634393533316562
+telegram_bot_token: input_token_here
 
 ## My bot is configured to send messages to one chat,
 ## So please input a correct chat id here
-telegram_chat_id: !vault |
-          $ANSIBLE_VAULT;1.1;AES256
-          35343734623764323937376430316365636131643334613734383938643664613630613562336433
-          6534383231623939663661666363333032643261646535300a356430343765643139303866616163
-          38303736353133343633343562613138353339636566376233643236363762373864633231663838
-          6537333064323865310a356230613239656138623631643261646634626362666138623165333264
-          6437
+telegram_chat_id: input_chat_id_here

@@ -15,6 +15,7 @@
       ENABLE_RCON: "{{ enable_rcon }}"
       RCON_PORT: "{{ rcon_port }}"
       RCON_PASSWORD: "{{ rcon_password }}"
+      ENABLE_WHITELIST: "{{ enable_whitelist }}"
       SEED: "{{ world_seed }}"
       LEVEL_TYPE: "{{ level_type }}"
       MODE: "{{ gamemode }}"
@@ -36,4 +37,4 @@
       FORCE_GAMEMODE: "{{ force_gamemode }}"
       GENERATE_STRUCTURES: "{{ generate_structures }}"
     tty: true
-  no_log: true
+  no_log: false
