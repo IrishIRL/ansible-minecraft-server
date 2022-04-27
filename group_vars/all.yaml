@@ -180,3 +180,14 @@ telegram_bot_token: input_token_here
 ## My bot is configured to send messages to one chat,
 ## So please input a correct chat id here
 telegram_chat_id: input_chat_id_here
+
+# Backup options
+## lcl - for local directory
+## ext - for external directory
+## lcl_ext is used to decide upon which directory to use:
+### * 1 for local (default)
+### * 2 for external
+### * 3 for local + external
+lcl_backup_dir: /home/backup
+ext_backup_dir: /media/backup
+lcl_ext: 1

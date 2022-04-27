@@ -1,25 +1,25 @@
-# There will be a special user for logging services.
+# There will be a special user for logging/ monitoring services.
 ## Creating such user
-- name: Make user logger
+- name: Make user monitoring
   ansible.builtin.user:
-    name: logger
+    name: monitoring
     groups: docker, video
 
 # CPU Temprature Logging
-## Copy teamprature logger script
-- name: Copy temp-logger.sh script to the server
+## Copy teamprature monitoring script
+- name: Copy temp-mon.sh script to the server
   ansible.builtin.template:
-    src: temp-logger.sh.j2
-    dest: /home/logger/temp-logger.sh
-    owner: logger
+    src: temp-mon.sh.j2
+    dest: /home/monitoring/temp-mon.sh
+    owner: monitoring
     mode: '0700'
   no_log: true
 
-## Make cron file that will call temprature logger every 3 minutes
-- name: Create cron file temp-logger script
+## Make cron file that will call temprature monitoring every 3 minutes
+- name: Create cron file temp-monitoring script
   ansible.builtin.copy:
-    src: temp-logger.cron
-    dest: /etc/cron.d/temp-logger
+    src: temp-mon.cron
+    dest: /etc/cron.d/temp-mon
 
 # Server Name Logging
 ## Since I am using a free Ngrok API, the server name is always a random and sometime it changes
@@ -33,13 +33,13 @@
 - name: Copy domain-notifier.sh script to the server
   ansible.builtin.template:
     src: domain-notifier.sh.j2
-    dest: /home/logger/domain-notifier.sh
-    owner: logger
+    dest: /home/monitoring/ngrok-mon.sh
+    owner: monitoring
     mode: '0700'
   no_log: true
 
-## Make cron file that will call domain notifier every 5 minutes
+## Make cron file that will call monitoring of ngrok domain name every 5 minutes
 - name: Create cron file domain-notifier script
   ansible.builtin.copy:
-    src: domain-notifier.cron
-    dest: /etc/cron.d/domain-notifier
+    src: ngrok-mon.cron
+    dest: /etc/cron.d/ngrok-mon

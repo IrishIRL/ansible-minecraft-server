@@ -66,9 +66,9 @@
     hosts: minecraft_servers
     become: yes
     roles:
-      - logger
+      - monitoring
     tags:
-      - logger
+      - mon
 
 #  - name: Rsyslog influx logging
 #    hosts: all

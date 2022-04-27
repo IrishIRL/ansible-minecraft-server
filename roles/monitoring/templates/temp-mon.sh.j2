@@ -17,14 +17,14 @@
 # DECLARATIONS END #
 
   ## Write down the date and temprature to the log
-  echo "$DATE | $TEMPRATURE" >> raspberry_temp.txt
+  echo "[$DATE] - $TEMPRATURE" >> gpu_temp.log
 
   ## Check temprature
   ## If temprature is over 65'C, then it sends a warning message both to telegram and minecraft server
   if [ $TEMPRATURE_CONVERTED -gt 65 ]
   then
-      docker exec minecraft-server mc-send-to-console say "§4[WARNING] §fCurrent CPU temprature: §4$TEMPRATURE"
-      curl "https://api.telegram.org/bot$TOKEN/sendMessage?chat_id=$CHAT&text=\[WARNING\] CPU Temprature: $TEMPRATURE"
+      docker exec minecraft-server mc-send-to-console say "§4[WARNING] §fCurrent GPU temprature: §4$TEMPRATURE"
+      curl "https://api.telegram.org/bot$TOKEN/sendMessage?chat_id=$CHAT&text=\[WARNING\] GPU Temprature: $TEMPRATURE"
   ## Otherwise it sends information only to minecraft server
   elif [ $TEMPRATURE_CONVERTED -gt 40 ]
   then

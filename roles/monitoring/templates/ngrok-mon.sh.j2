@@ -9,7 +9,7 @@
   CHAT="{{ telegram_chat_id }}"
 
   ## We need a file that has the current server address to check if it is still the same.
-  FILE=/home/logger/current_server_address.txt
+  FILE=/home/monitoring/curr_domain_address.txt
 
 # DECLARATIONS END #
 
@@ -21,7 +21,7 @@
 
   if [ ! -w "$FILE" ] ; then
       ## Check that the file is writable, if not, then sends an error to Telegram chat and returns 1
-      curl "https://api.telegram.org/bot$TOKEN/sendMessage?chat_id=$CHAT&text=Failed to write to the $FILE. Check domain-notifier.sh"
+      curl "https://api.telegram.org/bot$TOKEN/sendMessage?chat_id=$CHAT&text=Failed to write to the $FILE. Check ngrok-mon.sh"
       exit 1
   fi
 
@@ -34,5 +34,5 @@
        ## Write the new server address to the file
        echo "$DOMAIN_NAME" > $FILE
        ## Sends the message to the $CHAT with the bot$TOKEN regarding new $DOMAIN_NAME
-       curl "https://api.telegram.org/bot$TOKEN/sendMessage?chat_id=$CHAT&text=New World Domain Name: $DOMAIN_NAME"
+       curl "https://api.telegram.org/bot$TOKEN/sendMessage?chat_id=$CHAT&text=New World Domain Name Address: $DOMAIN_NAME"
   fi
