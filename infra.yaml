@@ -34,9 +34,9 @@
     hosts: minecraft_servers
     become: yes
     roles:
-      - minecraft
+      - minecraft-container
     tags:
-      - minecraft
+      - minecraft-container
 
   - name: Ngrok
     hosts: minecraft_servers
