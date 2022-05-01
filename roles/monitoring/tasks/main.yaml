@@ -32,7 +32,7 @@
 ## Copy domain notifier script
 - name: Copy domain-notifier.sh script to the server
   ansible.builtin.template:
-    src: domain-notifier.sh.j2
+    src: ngrok-mon.sh.j2
     dest: /home/monitoring/ngrok-mon.sh
     owner: monitoring
     mode: '0700'

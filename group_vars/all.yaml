@@ -172,7 +172,7 @@ override_server_properties: "TRUE"
 ## So please input a correct ngrok auth token here
 ngrok_auth_token: input_token_here
 
-# Logger options
+# Monitoring options
 ## I am using telegram bot to send different type of log messages,
 ## So please input a correct token here
 telegram_bot_token: input_token_here
@@ -181,13 +181,22 @@ telegram_bot_token: input_token_here
 ## So please input a correct chat id here
 telegram_chat_id: input_chat_id_here
 
-# Backup options
+
+# Backup overall options
 ## lcl - for local directory
 ## ext - for external directory
-## lcl_ext is used to decide upon which directory to use:
-### * 1 for local (default)
-### * 2 for external
-### * 3 for local + external
+## lcl_ext is used to decide upon which directory to use: 
+## (1 - local, 2 - external, 3 - both)
 lcl_backup_dir: /home/backup
 ext_backup_dir: /media/backup
-lcl_ext: 1
+lcl_ext: 3
+
+# Backup USB options
+## Currently we are using label to identify the USB,
+## but you can choose any of those. Please check /roles/backups/tasks for more.
+backup_usb_label: Backup
+## backup_usb_uuid
+## backup_usb_path
+backup_usb_fstype: ext4
+
+
