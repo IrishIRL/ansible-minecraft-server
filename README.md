@@ -14,6 +14,15 @@ Probably it is not the best idea for the public servers, I have also added Teleg
 * Since I have a free plan at the Ngrok and my server does not work 24/7, Ngrok address is restarted at least once a day. I did not like the idea of visiting the Ngrok dashboard each time to find the endpoint address, so there is now a small monitoring for that too.
 Every 5 minutes small script checks the current Ngrok server address and if it was changed, then Telegram notification with a new server address is sent to the group chat. 
 
+## Prerequisites
+~~~
+1. Raspberry Pi with RasbianOS (64 bit)
+2. MicroSD (16+ GB)
+3. Ansible (ansible-vault, ansible-playbook, ansible.posix)
+4. SSH access with Public key
+5. USB for external backups (optional)
+~~~
+
 ## Project status
 ### Currently have:
 ~~~
@@ -21,7 +30,7 @@ Every 5 minutes small script checks the current Ngrok server address and if it w
 1.2. Minecraft initial setup via group_vars
 2. Ngrok client + notifies when server address is changed
 3. Minecraft World backup (every two hours)
-4. Logging of CPU temprature
+4. Logging of GPU temprature
 ~~~
 
 ### Planning to add:
