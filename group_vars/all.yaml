@@ -198,5 +198,3 @@ backup_usb_label: Backup
 ## backup_usb_uuid
 ## backup_usb_path
 backup_usb_fstype: ext4
-
-
