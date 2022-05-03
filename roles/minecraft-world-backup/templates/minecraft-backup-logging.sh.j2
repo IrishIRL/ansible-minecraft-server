@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# DECLARATIONS START #
+
+  DATE=$(date +%Y-%m-%d-%H-%M-%S)
+
+  FILE_NAME=logs/minecraft-backup.$DATE.log
+
+# DECLARATIONS END #
+
+  echo "Script started at $DATE" > $FILE_NAME
+  /home/backup/minecraft-world-backup.sh &>> $FILE_NAME
+  echo "Script finished at $DATE" >> $FILE_NAME
