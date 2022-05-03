@@ -22,6 +22,22 @@
     src: temp-mon.cron
     dest: /etc/cron.d/temp-mon
 
+# CPU Usage Logging
+## Copy CPU usage monitoring script
+- name: Copy cpu-mon.sh script to the server
+  ansible.builtin.template:
+    src: cpu-mon.sh.j2
+    dest: /home/monitoring/cpu-mon.sh
+    owner: monitoring
+    mode: '0700'
+  no_log: true
+
+## Make cron file that will call CPU usage monitoring every 3 minutes
+- name: Create cron file cpu-monitoring script
+  ansible.builtin.copy:
+    src: cpu-mon.cron
+    dest: /etc/cron.d/cpu-mon
+
 # Server Name Logging
 ## Since I am using a free Ngrok API, the server name is always a random and sometime it changes
 ## For that reason I am going to log the current name and in case it changed, the Telegram bot will send a message to my group.
