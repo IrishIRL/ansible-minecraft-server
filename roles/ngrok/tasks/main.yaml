@@ -1,24 +1,24 @@
 - name: Download ngrok
   ansible.builtin.get_url:
-    url: https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.tgz
+    url: https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-arm.tgz
     dest: /ngrok-stable-linux-arm.tgz
 
 - name: Unzip ngrok
   ansible.builtin.unarchive:
     remote_src: yes
     src: /ngrok-stable-linux-arm.tgz
-    dest: /home/pi/
+    dest: /home/irl/
     mode: a+x
 
 - name: Make ngrok folder
   ansible.builtin.file:
-    path: /home/pi/.ngrok2
+    path: /home/irl/.ngrok2
     state: directory
 
 - name: Ngrok config
   ansible.builtin.template:
     src: ngrok.yml.j2
-    dest: /home/pi/.ngrok2/ngrok.yml
+    dest: /home/irl/.ngrok2/ngrok.yml
 
 - name: Copy ngrok-client service
   ansible.builtin.copy:
