@@ -24,7 +24,7 @@
   if [ $TEMPRATURE_CONVERTED -gt 65 ]
   then
       docker exec minecraft-server mc-send-to-console say "§4[WARNING] §fCurrent GPU temprature: §4$TEMPRATURE"
-      curl "https://api.telegram.org/bot$TOKEN/sendMessage?chat_id=$CHAT&text=\[WARNING\] GPU Temprature: $TEMPRATURE"
+      curl "https://api.telegram.org/bot$TOKEN/sendMessage?chat_id=$CHAT&text=\[WARNING\]%20GPU%20Temprature:%20$TEMPRATURE"
   ## Otherwise it sends information only to minecraft server
   elif [ $TEMPRATURE_CONVERTED -gt 40 ]
   then

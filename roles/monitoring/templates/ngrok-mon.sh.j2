@@ -21,7 +21,7 @@
 
   if [ ! -w "$FILE" ] ; then
       ## Check that the file is writable, if not, then sends an error to Telegram chat and returns 1
-      curl "https://api.telegram.org/bot$TOKEN/sendMessage?chat_id=$CHAT&text=Failed to write to the $FILE. Check ngrok-mon.sh"
+      curl "https://api.telegram.org/bot$TOKEN/sendMessage?chat_id=$CHAT&text=Failed%20to%20write%20to%20the%20$FILE.%20Check%20ngrok-mon.sh"
       exit 1
   fi
 
@@ -34,5 +34,5 @@
        ## Write the new server address to the file
        echo "$DOMAIN_NAME" > $FILE
        ## Sends the message to the $CHAT with the bot$TOKEN regarding new $DOMAIN_NAME
-       curl "https://api.telegram.org/bot$TOKEN/sendMessage?chat_id=$CHAT&text=New World Domain Name Address: $DOMAIN_NAME"
+       curl "https://api.telegram.org/bot$TOKEN/sendMessage?chat_id=$CHAT&text=New%20World%20Domain%20Name%20Address:%20$DOMAIN_NAME"
   fi
